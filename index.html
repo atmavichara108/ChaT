@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Чайный Траст</title>
+  <meta name="description" content="Чайный Траст — продвижение чайной культуры, коллаборации, чайные церемонии">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">Чайный Траст</h1>
+      <nav class="nav">
+        <ul>
+          <li><a href="#mission" data-lang-key="mission">Миссия</a></li>
+          <li><a href="#structure" data-lang-key="structure">Структура</a></li>
+          <li><a href="#ceremony" data-lang-key="ceremony">Церемонии</a></li>
+          <li><a href="#projects" data-lang-key="projects">Проекты</a></li>
+          <li><a href="#contact" data-lang-key="contact">Контакты</a></li>
+        </ul>
+      </nav>
+      <div class="lang-switch">
+        <button data-lang="ru">RU</button>
+        <button data-lang="en">EN</button>
+        <button data-lang="ka">KA</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="mission">
+      <h2 data-lang-key="missionTitle">Миссия и видение</h2>
+      <p data-lang-key="missionText">Чайный Траст посвящен продвижению чайной культуры через образование, предпринимательство и культурный обмен. Мы создаём сообщество в Батуми, объединяющее мастеров и энтузиастов для обучения, креатива и устойчивых проектов.</p>
+    </section>
+
+    <section id="structure">
+      <h2 data-lang-key="structureTitle">Организационная структура</h2>
+      <ul>
+        <li data-lang-key="structureCore">Координационный совет</li>
+        <li data-lang-key="structureCommittees">Равноправные комитеты: маркетинг, образование, события, финансы, развитие</li>
+        <li data-lang-key="structureMembership">Уровни участия: основатели, мастера, участники, друзья сообщества</li>
+      </ul>
+    </section>
+
+    <section id="ceremony">
+      <h2 data-lang-key="ceremonyTitle">Чайные церемонии и форматы</h2>
+      <div class="ceremony-list">
+        <article>
+          <h3 data-lang-key="standardCeremony">Базовая церемония</h3>
+          <p data-lang-key="standardDetails">1–1.5 часа, 5 человек, $30 за позицию чая</p>
+        </article>
+        <article>
+          <h3 data-lang-key="collabFormats">Коллаборации</h3>
+          <p data-lang-key="collabDetails">Мастер-классы, события под ключ, партнёрство с кафе и галереями</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2 data-lang-key="projectsTitle">Ключевые проекты</h2>
+      <ul>
+        <li data-lang-key="project1">Чайная карта Батуми</li>
+        <li data-lang-key="project2">Базовый образовательный курс</li>
+        <li data-lang-key="project3">Еженедельные встречи</li>
+        <li data-lang-key="project4">Микрофестиваль чая</li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2 data-lang-key="contactTitle">Связаться с нами</h2>
+      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact">
+        <p hidden><label>Не заполняйте это поле: <input name="bot-field"></label></p>
+        <label data-lang-key="labelName">Имя / Name / სახელი<br><input type="text" name="name" required></label>
+        <label data-lang-key="labelEmail">Email<br><input type="email" name="email" required></label>
+        <label data-lang-key="labelMessage">Сообщение / Message / შეტყობინება<br><textarea name="message" rows="5" required></textarea></label>
+        <button type="submit" data-lang-key="sendButton">Отправить</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>ecommunity108@gmail.com</p>
+      <p>&copy; 2025 Чайный Траст</p>
+    </div>
+  </footer>
+
+  <script>
+    const i18n = {
+      en: {
+        mission: 'Mission', missionTitle: 'Mission & Vision', missionText: 'Tea Trust promotes tea culture through education, entrepreneurship and cultural exchange. We build a community in Batumi uniting masters and enthusiasts for learning and sustainable projects.',
+        structure: 'Structure', structureTitle: 'Organizational Structure', structureCore: 'Coordinating Council', structureCommittees: 'Equal committees: marketing, education, events, finance, development', structureMembership: 'Membership levels: founders, masters, members, community friends',
+        ceremony: 'Ceremonies', ceremonyTitle: 'Ceremonies & Formats', standardCeremony: 'Standard Ceremony', standardDetails: '1–1.5 hours, 5 people, $30 per tea position', collabFormats: 'Collaborations', collabDetails: 'Workshops, turnkey events, partnerships with cafes and galleries',
+        projects: 'Projects', projectsTitle: 'Key Projects', project1: 'Tea Map of Batumi', project2: 'Basic Educational Course', project3: 'Weekly Meetings', project4: 'Tea Micro-Festival',
+        contact: 'Contact', contactTitle: 'Get in Touch', labelName: 'Name', labelEmail: 'Email', labelMessage: 'Message', sendButton: 'Send'
+      },
+      ka: {
+        mission: 'მისია', missionTitle: 'მისია და ხედვა', missionText: 'ჩაი ტრაკი აავსებს ჩაი კულტურის პოპულარიზაციას განათლების, მეწარმეობისა და კულტურული გაცვლის გზით. ვქმნით საზოგადოებას ბათუმში, რომელშიც გაერთიანდებიან ოსტატები და ენთუზიასტები სწავლისა და მდგრადი პროექტებისთვის.',
+        structure: 'სტრუქტურა', structureTitle: 'ორგანიზაციული სტრუქტურა', structureCore: 'კოორდინაციური საბჭო', structureCommittees: 'ბალანსირებული კომიტეტები: მარკეტინგი, განათლება, ღონისძიებები, ფინანსები, განვითარება', structureMembership: 'მონაწილეობის დონეები: დამფუძნებლები, ოსტატები, წევრები, საზოგადოების მეგობრები',
+        ceremony: 'ცერემონიები', ceremonyTitle: 'ცერემონიები და ფორმატები', standardCeremony: 'სტანდარტული ცერემონია', standardDetails: '1–1.5 საათი, 5 ადამიანი, $30 თითო პოზიციისთვის ჩაის', collabFormats: 'კოლაბორაციები', collabDetails: ' მასტერკლასები, "turnkey" ღონისძიებები, კაფეებისა და გალერეების პარტნიორობა',
+        projects: 'პროექტები', projectsTitle: 'მნიშვნელოვანი პროექტები', project1: 'ბათუმის ჩაი რუკა', project2: 'საერთო საკვეისტრო კურსი', project3: 'ყოველკვირიური შეხვედრები', project4: 'ჩაის მიკროფესტივალი',
+        contact: 'კონტაქტი', contactTitle: 'დაგვიკავშირდით', labelName: 'სახელი', labelEmail: 'ელ-ფოსტა', labelMessage: 'შეტყობინება', sendButton: 'გაგზავნა'
+      }
+    };
+
+    const switchLang = (lang) => {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-lang-key]').forEach(el => {
+        const key = el.getAttribute('data-lang-key');
+        const text = i18n[lang][key] || i18n.ru[key];
+        el.textContent = text;
+      });
+    };
+
+    document.querySelectorAll('.lang-switch button').forEach(btn => {
+      btn.addEventListener('click', () => switchLang(btn.dataset.lang));
+    });
+
+    // init
+    switchLang('ru');
+  </script>
+</body>
+</html>
