@@ -1,125 +1,658 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Чайный Траст</title>
-  <meta name="description" content="Чайный Траст — продвижение чайной культуры, коллаборации, чайные церемонии">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЧаТ - Кооперативная платформа развития чайной культуры</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --tea-brown: #8B4513;
+            --tea-gold: #DAA520;
+            --tea-light: #F5DEB3;
+            --tea-dark: #654321;
+        }
+        
+        .tea-gradient {
+            background: linear-gradient(135deg, var(--tea-brown) 0%, var(--tea-gold) 100%);
+        }
+        
+        .tea-text {
+            color: var(--tea-dark);
+        }
+        
+        .tea-bg-light {
+            background-color: var(--tea-light);
+        }
+        
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+        
+        .hover-scale {
+            transition: transform 0.2s ease;
+        }
+        
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+    </style>
 </head>
-<body>
-  <header class="header">
-    <div class="container">
-      <h1 class="logo">Чайный Траст</h1>
-      <nav class="nav">
-        <ul>
-          <li><a href="#mission" data-lang-key="mission">Миссия</a></li>
-          <li><a href="#structure" data-lang-key="structure">Структура</a></li>
-          <li><a href="#ceremony" data-lang-key="ceremony">Церемонии</a></li>
-          <li><a href="#projects" data-lang-key="projects">Проекты</a></li>
-          <li><a href="#contact" data-lang-key="contact">Контакты</a></li>
-        </ul>
-      </nav>
-      <div class="lang-switch">
-        <button data-lang="ru">RU</button>
-        <button data-lang="en">EN</button>
-        <button data-lang="ka">KA</button>
-      </div>
-    </div>
-  </header>
+<body class="scroll-smooth bg-gradient-to-br from-yellow-50 to-amber-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 tea-gradient shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="text-white font-bold text-xl">
+                    <i class="fas fa-leaf mr-2"></i>ЧаТ
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-6">
+                    <a href="#home" class="text-white hover:text-yellow-200 transition-colors">Главная</a>
+                    <a href="#mission" class="text-white hover:text-yellow-200 transition-colors">Миссия</a>
+                    <a href="#teams" class="text-white hover:text-yellow-200 transition-colors">Команды</a>
+                    <a href="#finances" class="text-white hover:text-yellow-200 transition-colors">Финансы</a>
+                    <a href="#complex" class="text-white hover:text-yellow-200 transition-colors">Комплекс</a>
+                    <a href="#contacts" class="text-white hover:text-yellow-200 transition-colors">Контакты</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 w-64 h-full bg-amber-900 z-40 md:hidden">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-8">
+                    <span class="text-white font-bold text-lg">Меню</span>
+                    <button id="close-menu" class="text-white">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <div class="space-y-4">
+                    <a href="#home" class="block text-white hover:text-yellow-200 py-2 mobile-menu-link">Главная</a>
+                    <a href="#mission" class="block text-white hover:text-yellow-200 py-2 mobile-menu-link">Миссия</a>
+                    <a href="#teams" class="block text-white hover:text-yellow-200 py-2 mobile-menu-link">Команды</a>
+                    <a href="#finances" class="block text-white hover:text-yellow-200 py-2 mobile-menu-link">Финансы</a>
+                    <a href="#complex" class="block text-white hover:text-yellow-200 py-2 mobile-menu-link">Комплекс</a>
+                    <a href="#contacts" class="block text-white hover:text-yellow-200 py-2 mobile-menu-link">Контакты</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-  <main class="container">
-    <section id="mission">
-      <h2 data-lang-key="missionTitle">Миссия и видение</h2>
-      <p data-lang-key="missionText">Чайный Траст посвящен продвижению чайной культуры через образование, предпринимательство и культурный обмен. Мы создаём сообщество в Батуми, объединяющее мастеров и энтузиастов для обучения, креатива и устойчивых проектов.</p>
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center tea-gradient text-white">
+        <div class="container mx-auto px-4 text-center">
+            <div class="max-w-4xl mx-auto">
+                <i class="fas fa-leaf text-6xl mb-6 text-yellow-200"></i>
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">ЧаТ</h1>
+                <h2 class="text-2xl md:text-3xl mb-8 text-yellow-100">Кооперативная платформа развития чайной культуры</h2>
+                <p class="text-lg md:text-xl mb-8 text-yellow-50">
+                    Сообщество энтузиастов, мастеров и предпринимателей, объединенных общей миссией —
+                    развивать чайную культуру через сотворчество, образование и взаимоподдержку
+                </p>
+                <a href="#mission" class="inline-block bg-yellow-500 text-amber-900 px-8 py-4 rounded-full font-semibold hover:bg-yellow-400 transition-colors hover-scale">
+                    Узнать больше <i class="fas fa-arrow-down ml-2"></i>
+                </a>
+            </div>
+        </div>
     </section>
 
-    <section id="structure">
-      <h2 data-lang-key="structureTitle">Организационная структура</h2>
-      <ul>
-        <li data-lang-key="structureCore">Координационный совет</li>
-        <li data-lang-key="structureCommittees">Равноправные комитеты: маркетинг, образование, события, финансы, развитие</li>
-        <li data-lang-key="structureMembership">Уровни участия: основатели, мастера, участники, друзья сообщества</li>
-      </ul>
+    <!-- Mission Section -->
+    <section id="mission" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 tea-text">
+                    <i class="fas fa-heart text-amber-600 mr-3"></i>
+                    Наша миссия и видение
+                </h2>
+                
+                <div class="text-lg tea-text mb-12 leading-relaxed">
+                    <p class="mb-6">
+                        <strong>Чайный Траст объединяет чайных энтузиастов для обучения и обмена опытом</strong> через образовательные программы и культурные события, создавая коммерческие проекты. Наша миссия — сохранить и продвигать чайную культуру Грузии и мира через создание крепкого сообщества мастеров и предпринимателей.
+                    </p>
+                    
+                    <div class="bg-amber-50 p-6 rounded-lg border-l-4 border-amber-500 mb-8">
+                        <h3 class="font-bold text-xl mb-4 text-amber-800">
+                            <i class="fas fa-handshake mr-2"></i>
+                            Мы приглашаем к сотворчеству, а не нанимаем сотрудников
+                        </h3>
+                        <p class="text-amber-700">
+                            В ЧаТ каждый участник — это соавтор нашего общего проекта. Мы не создаем иерархичную структуру работодателя и сотрудников, а формируем горизонтальное сообщество единомышленников, где каждый вносит свой уникальный вклад и получает справедливую долю от общего успеха.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="tea-bg-light p-6 rounded-lg">
+                        <i class="fas fa-users text-3xl text-amber-600 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-3 tea-text">Сообщество</h3>
+                        <p class="tea-text">Образование, взаимоподдержка, инновации, кооперация, нетворкинг</p>
+                    </div>
+                    <div class="tea-bg-light p-6 rounded-lg">
+                        <i class="fas fa-lightbulb text-3xl text-amber-600 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-3 tea-text">Развитие</h3>
+                        <p class="tea-text">Личный рост через мастерство, организацию и предпринимательство</p>
+                    </div>
+                    <div class="tea-bg-light p-6 rounded-lg">
+                        <i class="fas fa-leaf text-3xl text-amber-600 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-3 tea-text">Культура</h3>
+                        <p class="tea-text">Сохранение и продвижение чайных традиций в современном мире</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="ceremony">
-      <h2 data-lang-key="ceremonyTitle">Чайные церемонии и форматы</h2>
-      <div class="ceremony-list">
-        <article>
-          <h3 data-lang-key="standardCeremony">Базовая церемония</h3>
-          <p data-lang-key="standardDetails">1–1.5 часа, 5 человек, $30 за позицию чая</p>
-        </article>
-        <article>
-          <h3 data-lang-key="collabFormats">Коллаборации</h3>
-          <p data-lang-key="collabDetails">Мастер-классы, события под ключ, партнёрство с кафе и галереями</p>
-        </article>
-      </div>
+    <!-- Target Audience -->
+    <section id="audience" class="py-16 bg-gradient-to-r from-amber-50 to-yellow-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 tea-text">
+                    <i class="fas fa-compass text-amber-600 mr-3"></i>
+                    Для кого создан ЧаТ
+                </h2>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md hover-scale">
+                        <i class="fas fa-mug-hot text-3xl text-amber-600 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-3 tea-text">Любители чая</h3>
+                        <p class="tea-text">Энтузиасты, желающие углубить знания и найти единомышленников</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md hover-scale">
+                        <i class="fas fa-store text-3xl text-amber-600 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-3 tea-text">HoReCa</h3>
+                        <p class="tea-text">Рестораны, кафе, отели, желающие улучшить чайное предложение</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md hover-scale">
+                        <i class="fas fa-chalkboard-teacher text-3xl text-amber-600 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-3 tea-text">Преподаватели</h3>
+                        <p class="tea-text">Мастера, готовые делиться знаниями и создавать образовательный контент</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md hover-scale">
+                        <i class="fas fa-calendar-alt text-3xl text-amber-600 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-3 tea-text">Организаторы</h3>
+                        <p class="tea-text">Создатели мероприятий, фестивалей и культурных событий</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md hover-scale">
+                        <i class="fas fa-chart-line text-3xl text-amber-600 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-3 tea-text">Предприниматели</h3>
+                        <p class="tea-text">Бизнесмены, развивающие чайное направление в своих проектах</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md hover-scale">
+                        <i class="fas fa-bullhorn text-3xl text-amber-600 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-3 tea-text">Маркетологи</h3>
+                        <p class="tea-text">Специалисты по продвижению, контенту и социальным сетям</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="projects">
-      <h2 data-lang-key="projectsTitle">Ключевые проекты</h2>
-      <ul>
-        <li data-lang-key="project1">Чайная карта Батуми</li>
-        <li data-lang-key="project2">Базовый образовательный курс</li>
-        <li data-lang-key="project3">Еженедельные встречи</li>
-        <li data-lang-key="project4">Микрофестиваль чая</li>
-      </ul>
+    <!-- Teams Structure -->
+    <section id="teams" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 tea-text">
+                    <i class="fas fa-sitemap text-amber-600 mr-3"></i>
+                    Структура команд-департаментов
+                </h2>
+                
+                <p class="text-center text-lg tea-text mb-12 max-w-3xl mx-auto">
+                    Команды ЧаТ работают как единая экосистема департаментов, где каждое направление дополняет другие для достижения общих целей сообщества.
+                </p>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gradient-to-br from-amber-100 to-yellow-100 p-6 rounded-lg border-2 border-amber-200">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-chart-line text-4xl text-amber-600"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-3 tea-text text-center">Команда продаж</h3>
+                        <ul class="tea-text space-y-2 text-sm">
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>B2B продажи (HoReCa, магазины)</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Партнерские программы</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Дистрибьюция и логистика</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Комиссия 10-15% с продаж</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-amber-100 to-yellow-100 p-6 rounded-lg border-2 border-amber-200">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-graduation-cap text-4xl text-amber-600"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-3 tea-text text-center">Образовательная команда</h3>
+                        <ul class="tea-text space-y-2 text-sm">
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Курсы и мастер-классы</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Образовательный контент</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Сертификационные программы</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>% с продаж курсов + пробники</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-amber-100 to-yellow-100 p-6 rounded-lg border-2 border-amber-200">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-bullhorn text-4xl text-amber-600"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-3 tea-text text-center">Маркетинговая команда</h3>
+                        <ul class="tea-text space-y-2 text-sm">
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>SMM и контент-маркетинг</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Создание креативов</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Продвижение и PR</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>% с продаж от их активности</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-amber-100 to-yellow-100 p-6 rounded-lg border-2 border-amber-200">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-calendar-alt text-4xl text-amber-600"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-3 tea-text text-center">Команда мероприятий</h3>
+                        <ul class="tea-text space-y-2 text-sm">
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Фестивали и дегустации</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Нетворкинг-события</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Культурные программы</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Чай по себестоимости + оборудование</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-amber-100 to-yellow-100 p-6 rounded-lg border-2 border-amber-200">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-coins text-4xl text-amber-600"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-3 tea-text text-center">Финансовая команда</h3>
+                        <ul class="tea-text space-y-2 text-sm">
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Бюджетирование проектов</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Фандрайзинг и инвестиции</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Финансовая отчетность</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>% с привлеченных инвестиций</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-amber-100 to-yellow-100 p-6 rounded-lg border-2 border-amber-200">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-cogs text-4xl text-amber-600"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-3 tea-text text-center">Операционная команда</h3>
+                        <ul class="tea-text space-y-2 text-sm">
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Процессы и логистика</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Качество продукции</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Техническая поддержка</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Участие в операционной прибыли</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="contact">
-      <h2 data-lang-key="contactTitle">Связаться с нами</h2>
-      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="contact">
-        <p hidden><label>Не заполняйте это поле: <input name="bot-field"></label></p>
-        <label data-lang-key="labelName">Имя / Name / სახელი<br><input type="text" name="name" required></label>
-        <label data-lang-key="labelEmail">Email<br><input type="email" name="email" required></label>
-        <label data-lang-key="labelMessage">Сообщение / Message / შეტყობინება<br><textarea name="message" rows="5" required></textarea></label>
-        <button type="submit" data-lang-key="sendButton">Отправить</button>
-      </form>
+    <!-- Financial Model -->
+    <section id="finances" class="py-16 bg-gradient-to-r from-amber-50 to-yellow-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 tea-text">
+                    <i class="fas fa-chart-pie text-amber-600 mr-3"></i>
+                    Прозрачная финансовая модель
+                </h2>
+                
+                <!-- Subscription Model -->
+                <div class="bg-white rounded-lg shadow-lg p-8 mb-12">
+                    <h3 class="text-2xl font-bold mb-6 tea-text text-center">
+                        <i class="fas fa-star text-amber-500 mr-2"></i>
+                        Система участия
+                    </h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-gradient-to-br from-green-100 to-emerald-100 p-6 rounded-lg border-2 border-green-200">
+                            <h4 class="font-bold text-xl mb-4 text-green-800">
+                                <i class="fas fa-gift mr-2"></i>
+                                Канал без подписки
+                            </h4>
+                            <ul class="text-green-700 space-y-2">
+                                <li><i class="fas fa-check mr-2"></i>Базовые цены на чай</li>
+                                <li><i class="fas fa-check mr-2"></i>Доступ к открытым мероприятиям</li>
+                                <li><i class="fas fa-check mr-2"></i>Общая информация о проектах</li>
+                                <li><i class="fas fa-check mr-2"></i>Бонусы от каждого взаимодействия</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-amber-100 to-yellow-100 p-6 rounded-lg border-2 border-amber-300">
+                            <h4 class="font-bold text-xl mb-4 text-amber-800">
+                                <i class="fas fa-crown mr-2"></i>
+                                Подписка - 50₾/месяц
+                            </h4>
+                            <ul class="text-amber-700 space-y-2">
+                                <li><i class="fas fa-check mr-2"></i>Скидка 15% на весь чай</li>
+                                <li><i class="fas fa-check mr-2"></i><strong>50г пробников</strong> ежемесячно</li>
+                                <li><i class="fas fa-check mr-2"></i>Приоритетная запись на мероприятия</li>
+                                <li><i class="fas fa-check mr-2"></i>Консультации и образовательные материалы</li>
+                                <li><i class="fas fa-check mr-2"></i>Маркетинговые материалы для бизнеса</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Revenue Distribution -->
+                <div class="bg-white rounded-lg shadow-lg p-8 mb-12">
+                    <h3 class="text-2xl font-bold mb-6 tea-text text-center">
+                        <i class="fas fa-share-alt text-amber-500 mr-2"></i>
+                        Распределение доходов и синергия команд
+                    </h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h4 class="font-bold text-lg mb-4 tea-text">
+                                <i class="fas fa-coins mr-2"></i>
+                                Доходы от подписок (50₾ × количество участников)
+                            </h4>
+                            <ul class="tea-text space-y-2">
+                                <li><i class="fas fa-arrow-right text-amber-500 mr-2"></i>35% - Пробники по оптовой цене (50г)</li>
+                                <li><i class="fas fa-arrow-right text-amber-500 mr-2"></i>25% - Образовательные проекты и мероприятия</li>
+                                <li><i class="fas fa-arrow-right text-amber-500 mr-2"></i>20% - Маркетинговые материалы и посуда для HoReCa</li>
+                                <li><i class="fas fa-arrow-right text-amber-500 mr-2"></i>20% - Развитие платформы и операционные расходы</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-lg mb-4 tea-text">
+                                <i class="fas fa-handshake mr-2"></i>
+                                Доходы от продаж чая
+                            </h4>
+                            <ul class="tea-text space-y-2">
+                                <li><i class="fas fa-arrow-right text-amber-500 mr-2"></i>40% - Команда продаж (продавцы)</li>
+                                <li><i class="fas fa-arrow-right text-amber-500 mr-2"></i>15% - Маркетинговая команда</li>
+                                <li><i class="fas fa-arrow-right text-amber-500 mr-2"></i>10% - Образовательная поддержка</li>
+                                <li><i class="fas fa-arrow-right text-amber-500 mr-2"></i>35% - Закупка нового чая и развитие</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-bold text-lg mb-3 text-blue-800">
+                            <i class="fas fa-sync-alt mr-2"></i>
+                            Синергия команд в действии
+                        </h4>
+                        <p class="text-blue-700 mb-4">
+                            Все команды работают в единой связке: маркетинговая команда создает контент и привлекает клиентов, команда продаж работает с ними, образовательная команда готовит материалы для обучения персонала HoReCa, команда мероприятий организует дегустации для продвижения, а финансовая команда обеспечивает прозрачность и развитие.
+                        </p>
+                        <p class="text-blue-700">
+                            <strong>Каждая команда получает вознаграждение не только за свою прямую деятельность, но и за вклад в общий успех всей платформы.</strong>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Investment Model -->
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <h3 class="text-2xl font-bold mb-6 tea-text text-center">
+                        <i class="fas fa-rocket text-amber-500 mr-2"></i>
+                        Привлечение средств и масштабирование
+                    </h3>
+                    
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="text-center">
+                            <i class="fas fa-seedling text-4xl text-green-500 mb-4"></i>
+                            <h4 class="font-bold text-lg mb-3 tea-text">Фандрайзинг</h4>
+                            <p class="tea-text">Краудфандинговые кампании для развития чайного комплекса и новых проектов</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <i class="fas fa-user-tie text-4xl text-blue-500 mb-4"></i>
+                            <h4 class="font-bold text-lg mb-3 tea-text">Инвесторы</h4>
+                            <p class="tea-text">У нас уже есть заинтересованные инвесторы, готовые поддержать развитие проекта</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <i class="fas fa-expand-arrows-alt text-4xl text-purple-500 mb-4"></i>
+                            <h4 class="font-bold text-lg mb-3 tea-text">Франшиза</h4>
+                            <p class="tea-text">Масштабирование модели ЧаТ в других городах и регионах</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-  </main>
 
-  <footer class="footer">
-    <div class="container">
-      <p>ecommunity108@gmail.com</p>
-      <p>&copy; 2025 Чайный Траст</p>
-    </div>
-  </footer>
+    <!-- Tea Complex -->
+    <section id="complex" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 tea-text">
+                    <i class="fas fa-building text-amber-600 mr-3"></i>
+                    Чайный комплекс в Батуми
+                </h2>
+                
+                <p class="text-center text-lg tea-text mb-12 max-w-4xl mx-auto">
+                    Наш флагманский проект — уникальное физическое пространство, объединяющее различные направления деятельности под одной крышей. Это место, где рождается чайная культура и развивается сообщество.
+                </p>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                    <div class="bg-gradient-to-br from-amber-100 to-yellow-100 p-6 rounded-lg shadow-md hover-scale">
+                        <i class="fas fa-mug-hot text-4xl text-amber-600 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-3 tea-text">Чайная</h3>
+                        <p class="tea-text">Пространство для дегустаций, церемоний и обучения чайным традициям</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-amber-100 to-yellow-100 p-6 rounded-lg shadow-md hover-scale">
+                        <i class="fas fa-laptop text-4xl text-amber-600 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-3 tea-text">Коворкинг</h3>
+                        <p class="tea-text">Рабочие места для предпринимателей и творческих проектов</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-amber-100 to-yellow-100 p-6 rounded-lg shadow-md hover-scale">
+                        <i class="fas fa-bed text-4xl text-amber-600 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-3 tea-text">Хостел</h3>
+                        <p class="tea-text">Размещение для участников сообщества и чайных туристов</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-amber-100 to-yellow-100 p-6 rounded-lg shadow-md hover-scale">
+                        <i class="fas fa-paint-brush text-4xl text-amber-600 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-3 tea-text">Гончарная мастерская</h3>
+                        <p class="tea-text">Создание уникальной чайной посуды и керамических изделий</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-amber-100 to-yellow-100 p-6 rounded-lg shadow-md hover-scale">
+                        <i class="fas fa-store text-4xl text-amber-600 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-3 tea-text">Лавка хенд-мейда</h3>
+                        <p class="tea-text">Продажа авторских изделий участников сообщества</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-amber-100 to-yellow-100 p-6 rounded-lg shadow-md hover-scale">
+                        <i class="fas fa-plus-circle text-4xl text-amber-600 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-3 tea-text">Пространство для роста</h3>
+                        <p class="tea-text">Дополнительные комнаты для расширения и новых проектов</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-r from-amber-600 to-yellow-600 text-white p-8 rounded-lg">
+                    <h3 class="text-2xl font-bold mb-4 text-center">
+                        <i class="fas fa-handshake mr-2"></i>
+                        Приглашаем партнеров к сотрудничеству
+                    </h3>
+                    <p class="text-lg text-center mb-6">
+                        Чайный комплекс — это не только наш проект, но и возможность для партнерства. Мы открыты для инвестиций, совместных проектов и долгосрочного сотрудничества.
+                    </p>
+                    <div class="text-center">
+                        <p class="text-yellow-100">
+                            Станьте частью создания уникального культурного пространства в самом сердце Батуми
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <script>
-    const i18n = {
-      en: {
-        mission: 'Mission', missionTitle: 'Mission & Vision', missionText: 'Tea Trust promotes tea culture through education, entrepreneurship and cultural exchange. We build a community in Batumi uniting masters and enthusiasts for learning and sustainable projects.',
-        structure: 'Structure', structureTitle: 'Organizational Structure', structureCore: 'Coordinating Council', structureCommittees: 'Equal committees: marketing, education, events, finance, development', structureMembership: 'Membership levels: founders, masters, members, community friends',
-        ceremony: 'Ceremonies', ceremonyTitle: 'Ceremonies & Formats', standardCeremony: 'Standard Ceremony', standardDetails: '1–1.5 hours, 5 people, $30 per tea position', collabFormats: 'Collaborations', collabDetails: 'Workshops, turnkey events, partnerships with cafes and galleries',
-        projects: 'Projects', projectsTitle: 'Key Projects', project1: 'Tea Map of Batumi', project2: 'Basic Educational Course', project3: 'Weekly Meetings', project4: 'Tea Micro-Festival',
-        contact: 'Contact', contactTitle: 'Get in Touch', labelName: 'Name', labelEmail: 'Email', labelMessage: 'Message', sendButton: 'Send'
-      },
-      ka: {
-        mission: 'მისია', missionTitle: 'მისია და ხედვა', missionText: 'ჩაი ტრაკი აავსებს ჩაი კულტურის პოპულარიზაციას განათლების, მეწარმეობისა და კულტურული გაცვლის გზით. ვქმნით საზოგადოებას ბათუმში, რომელშიც გაერთიანდებიან ოსტატები და ენთუზიასტები სწავლისა და მდგრადი პროექტებისთვის.',
-        structure: 'სტრუქტურა', structureTitle: 'ორგანიზაციული სტრუქტურა', structureCore: 'კოორდინაციური საბჭო', structureCommittees: 'ბალანსირებული კომიტეტები: მარკეტინგი, განათლება, ღონისძიებები, ფინანსები, განვითარება', structureMembership: 'მონაწილეობის დონეები: დამფუძნებლები, ოსტატები, წევრები, საზოგადოების მეგობრები',
-        ceremony: 'ცერემონიები', ceremonyTitle: 'ცერემონიები და ფორმატები', standardCeremony: 'სტანდარტული ცერემონია', standardDetails: '1–1.5 საათი, 5 ადამიანი, $30 თითო პოზიციისთვის ჩაის', collabFormats: 'კოლაბორაციები', collabDetails: ' მასტერკლასები, "turnkey" ღონისძიებები, კაფეებისა და გალერეების პარტნიორობა',
-        projects: 'პროექტები', projectsTitle: 'მნიშვნელოვანი პროექტები', project1: 'ბათუმის ჩაი რუკა', project2: 'საერთო საკვეისტრო კურსი', project3: 'ყოველკვირიური შეხვედრები', project4: 'ჩაის მიკროფესტივალი',
-        contact: 'კონტაქტი', contactTitle: 'დაგვიკავშირდით', labelName: 'სახელი', labelEmail: 'ელ-ფოსტა', labelMessage: 'შეტყობინება', sendButton: 'გაგზავნა'
-      }
-    };
+    <!-- Contact Section -->
+    <section id="contacts" class="py-16 tea-gradient text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8">
+                    <i class="fas fa-envelope text-yellow-200 mr-3"></i>
+                    Присоединяйтесь к ЧаТ
+                </h2>
+                
+                <p class="text-lg mb-8 text-yellow-100">
+                    Станьте частью кооперативной платформы, используйте свой опыт, получайте новые возможности 
+                    и вносите вклад в развитие чайной культуры
+                </p>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div class="bg-white bg-opacity-20 p-6 rounded-lg">
+                        <h3 class="font-bold text-xl mb-4">
+                            <i class="fas fa-user-circle mr-2"></i>
+                            Основатель ЧаТ
+                        </h3>
+                        <p class="mb-4">Команда развития</p>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-20 p-6 rounded-lg">
+                        <h3 class="font-bold text-xl mb-4">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            Локация
+                        </h3>
+                        <p class="mb-4">Батуми, Грузия</p>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="https://wa.me/995599005461" target="_blank" 
+                       class="flex items-center bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full transition-colors hover-scale">
+                        <i class="fab fa-whatsapp mr-2 text-xl"></i>
+                        WhatsApp: +995 599 005 461
+                    </a>
+                    
+                    <a href="https://t.me/Atma_Vichara108" target="_blank" 
+                       class="flex items-center bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full transition-colors hover-scale">
+                        <i class="fab fa-telegram mr-2 text-xl"></i>
+                        Telegram: @Atma_Vichara108
+                    </a>
+                </div>
+                
+                <div class="mt-12 bg-white bg-opacity-20 p-6 rounded-lg">
+                    <h3 class="font-bold text-xl mb-4">
+                        <i class="fas fa-rocket mr-2"></i>
+                        Первые шаги для присоединения
+                    </h3>
+                    <ol class="text-left space-y-2 max-w-2xl mx-auto">
+                        <li><i class="fas fa-phone mr-2 text-yellow-200"></i>Свяжитесь с нами любым удобным способом</li>
+                        <li><i class="fas fa-comments mr-2 text-yellow-200"></i>Расскажите о своих интересах и планах</li>
+                        <li><i class="fas fa-lightbulb mr-2 text-yellow-200"></i>Получите персональные рекомендации</li>
+                        <li><i class="fas fa-users mr-2 text-yellow-200"></i>Выберите подходящую команду для участия</li>
+                        <li><i class="fas fa-star mr-2 text-yellow-200"></i>Станьте частью развивающегося сообщества</li>
+                    </ol>
+                </div>
+                
+                <p class="text-lg mt-8 text-yellow-100 font-semibold">
+                    <i class="fas fa-heart mr-2"></i>
+                    Чайный Траст — это инвестиция в ваш рост и развитие
+                </p>
+            </div>
+        </div>
+    </section>
 
-    const switchLang = (lang) => {
-      document.documentElement.lang = lang;
-      document.querySelectorAll('[data-lang-key]').forEach(el => {
-        const key = el.getAttribute('data-lang-key');
-        const text = i18n[lang][key] || i18n.ru[key];
-        el.textContent = text;
-      });
-    };
+    <!-- Footer -->
+    <footer class="py-8 bg-amber-900 text-amber-100">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex justify-center items-center mb-4">
+                <i class="fas fa-leaf text-2xl mr-2"></i>
+                <span class="text-xl font-bold">ЧаТ - Чайный Траст</span>
+            </div>
+            <p class="mb-2">Кооперативная платформа развития чайной культуры</p>
+            <p class="text-sm text-amber-300">Мы строим не просто бизнес, а сообщество единомышленников</p>
+        </div>
+    </footer>
 
-    document.querySelectorAll('.lang-switch button').forEach(btn => {
-      btn.addEventListener('click', () => switchLang(btn.dataset.lang));
-    });
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
 
-    // init
-    switchLang('ru');
-  </script>
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        closeMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add active class to navigation links on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            const scrollPos = window.scrollY + 100;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('text-yellow-200');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('text-yellow-200');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDuyOWQI2yVaNX7xJGkINpCCgNem6uGxHZY17SOQM1eLQ%2BvwQmQSyzs4AcIT1Qv7zqsM%2B%2FjhscMd6H4EfiNJiFvZStdcvDlyb3P2WCEpiBu4TCMp0EfkgTul6LZfqar7r1Tt4K9a9XS77%2BvF%2Bqe2bi5CsW6VK6fPgBA4o%2FKkUHxxSV6k3TZdIVsq%2FTKFVMTtUAeEYwJkDEAjquT9y0aVnDYzsJiMpRIAKDorKGGA9pq8kNOb%2FmqTR9%2FMjxKOwbD%2F1kpq%2B%2FUJbJQWy1qfO%2BqcmswpPScN1yQl5Ds%2BKhdCitphpy9AfTQ9zqSLAAMr1Fd4veW6jgQWtDGbdbqkIvNFEXrwfHdQJU5lxduN%2BW85rnnzGG3VP3ROQVAxD2St3DU1oPQsbVeH%2Bcjh6g%2BjbTr9BgyePfQ%2BxA76%2FtLo%2Fe%2FuDspp%2Fi7ob3AsvwMbQWkPPBUDLzLI5fytamMFAlg13bYz3FuGLXr7Oz6k5Keeb8Rg4qTV017kez%2FIJcVlKMqR%2BoWrZyS6C4cqmzMGiPxoDQvyArdU%3D";
+        window.__genspark_locale = "en-US";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDuyOWQI2yVaNX7xJGkINpCCgNem6uGxHZY17SOQM1eLQ+vwQmQSyzs4AcIT1Qv7zqsM+/jhscMd6H4EfiNJiFvZStdcvDlyb3P2WCEpiBu4TCMp0EfkgTul6LZfqar7r1Tt4K9a9XS77+vF+qe2bi5CsW6VK6fPgBA4o/KkUHxxSV6k3TZdIVsq/TKFVMTtUAeEYwJkDEAjquT9y0aVnDYzsJiMpRIAKDorKGGA9pq8kNOb/mqTR9/MjxKOwbD/1kpq+/UJbJQWy1qfO+qcmswpPScN1yQl5Ds+KhdCitphpy9AfTQ9zqSLAAMr1Fd4veW6jgQWtDGbdbqkIvNFEXrwfHdQJU5lxduN+W85rnnzGG3VP3ROQVAxD2St3DU1oPQsbVeH+cjh6g+jbTr9BgyePfQ+xA76/tLo/e/uDspp/i7ob3AsvwMbQWkPPBUDLzLI5fytamMFAlg13bYz3FuGLXr7Oz6k5Keeb8Rg4qTV017kez/IJcVlKMqR+oWrZyS6C4cqmzMGiPxoDQvyArdU=";
+    </script>
+    
+    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
+    
